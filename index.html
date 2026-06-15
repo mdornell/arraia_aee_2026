@@ -4,28 +4,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cardápio - Arraia AEE 2026</title>
+    <title>Cardápio - Arraiá AEE 2026</title>
 
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 15px;
             min-height: 100vh;
         }
 
         .container {
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            width: 400px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
         }
 
         h2 {
             text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            color: #333;
+        }
+
+        #banner {
+            display: block;
+            width: 100%;
+            max-height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
         .form-group {
@@ -34,27 +52,31 @@
 
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             font-weight: bold;
+            color: #444;
         }
 
         input[type="text"],
         input[type="number"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
+            font-size: 16px;
+            /* evita zoom automático no iPhone */
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 8px;
         }
 
         button {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: #28a745;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 16px;
         }
 
         button:hover {
@@ -63,18 +85,67 @@
 
         #mensagem {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 15px;
+            font-weight: bold;
         }
 
-        #banner{
-            display: block;
-            width: 100%; /* fit the container */
-            height: auto; /* keep original aspect ratio */
-            max-width: 100%;
-            margin: 0 0 20px 0;
+        .item-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
             border-radius: 10px;
-            object-fit: cover; /* crop nicely if constrained */
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            background: #fafafa;
+        }
+
+        .item-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-info label {
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .item-card input {
+            width: 70px;
+            text-align: center;
+            padding: 8px;
+        }
+
+        /* Ajustes para celulares */
+        @media (max-width: 480px) {
+
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+                border-radius: 10px;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            input[type="text"],
+            input[type="number"] {
+                padding: 14px;
+            }
+
+            button {
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -82,23 +153,28 @@
 <body>
 
     <div class="container">
-        <h2>Cardápio - Arraia AEE 2026</h2>
-        <img id="banner"d src="banner-arraia-2026.png" alt="banner do arraia">
+        <h2>Cardápio - 6º Arraiá AEE 2026</h2>
+        <img id="banner" src="imgs/banner-arraia-2026-2.png" alt="banner do arraia">
 
         <form id="pedidoForm">
 
-            <div class="form-group">
-                <label>Nome do Estudante</label>
-                <input type="text" id="nome" required>
-            </div>
+            <div class="item-card">
+                <img src="imgs/pipoca.jpg" alt="Pipoca" class="item-img">
 
-            <div class="form-group">
-                <label>Pipoca</label>
+                <div class="item-info">
+                    <label for="pipoca">Pipoca</label>
+                </div>
+
                 <input type="number" id="pipoca" min="0" value="0">
             </div>
 
-            <div class="form-group">
-                <label>Chup-Chup</label>
+            <div class="item-card">
+                <img src="imgs/chupchup.jpg" alt="Chup-Chup" class="item-img">
+
+                <div class="item-info">
+                    <label for="chupchup">Chup-Chup</label>
+                </div>
+
                 <input type="number" id="chupchup" min="0" value="0">
             </div>
 
