@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio - Arraia AEE 2026</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        #mensagem {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        #banner{
+            display: block;
+            width: 100%; /* fit the container */
+            height: auto; /* keep original aspect ratio */
+            max-width: 100%;
+            margin: 0 0 20px 0;
+            border-radius: 10px;
+            object-fit: cover; /* crop nicely if constrained */
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Cardápio - Arraia AEE 2026</h2>
+        <img id="banner"d src="banner-arraia-2026.png" alt="banner do arraia">
+
+        <form id="pedidoForm">
+
+            <div class="form-group">
+                <label>Nome do Estudante</label>
+                <input type="text" id="nome" required>
+            </div>
+
+            <div class="form-group">
+                <label>Pipoca</label>
+                <input type="number" id="pipoca" min="0" value="0">
+            </div>
+
+            <div class="form-group">
+                <label>Chup-Chup</label>
+                <input type="number" id="chupchup" min="0" value="0">
+            </div>
+
+            <button type="submit">Enviar Pedido</button>
+
+        </form>
+
+        <p id="mensagem"></p>
+    </div>
+
+    <script>
+
+        const urlScript = "https://script.google.com/macros/s/AKfycbylUxGoKjpHguj2LHqFPlwHoUjds-hnPoi1IeP4bpiTaE5l4B1qKr9yLosxyJpQ39NH/exec";
+
+        document.getElementById("pedidoForm")
+            .addEventListener("submit", async function (e) {
+
+                e.preventDefault();
+
+                const dados = {
+                    nome: document.getElementById("nome").value,
+                    pipoca: document.getElementById("pipoca").value,
+                    chupchup: document.getElementById("chupchup").value
+                };
+
+                try {
+                    await fetch(urlScript, {
+                        method: "POST",
+                        body: JSON.stringify(dados)
+                    });
+
+                    document.getElementById("mensagem").innerHTML =
+                        "Pedido enviado com sucesso!";
+
+                    document.getElementById("pedidoForm").reset();
+
+                } catch (erro) {
+                    document.getElementById("mensagem").innerHTML =
+                        "Erro ao enviar.";
+                }
+
+            });
+
+    </script>
+
+</body>
+
+</html>
